@@ -1,23 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TextInput from "./TextInput.js";
+import "./App.css";
 
 function App() {
+  const [wordQueue, setWordQueue] = useState("Test Test Test");
+  const [currentWord, setCurrentWord] = useState("Here");
+  const [correctCount, incrementCorrectCount] = useState(0);
+  const [incorrectCount, incrementIncorrectCount] = useState(0);
+
+  const handleKeyPress = (e) => {
+    setCurrentWord(currentWord + "e");
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <h1>Typing Test</h1>
+        <p className="correct-text" onClick={handleKeyPress}>
+          {currentWord}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TextInput></TextInput>
+        <p>Reset</p>
       </header>
     </div>
   );
