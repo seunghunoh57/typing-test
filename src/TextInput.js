@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function TextInput() {
+function TextInput(props) {
+  const handleFocus = (e) => {
+    console.log("test");
+  };
+
   return (
     <div className="textInputBase">
-      <div className="textInputText">TestTestTestTestTestTestTestTest</div>
+      <input
+        type="text"
+        placeholder={"Click here to begin"}
+        className="textInputText"
+        onClick={props.handleTextInputClick}
+        onFocus={handleFocus}
+      ></input>
     </div>
   );
 }

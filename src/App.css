@@ -40,15 +40,49 @@
   color: #ff5148
 }
 
+.button {
+  border-radius: 4px;
+  background-color: #2a2f37;
+  padding: 0px 10px 0px 10px
+}
+
+.button:hover {
+  background-color: #323942;
+}
+
+.break {
+  height: 4vh
+}
+
 .textInputBase {
-  height: calc(14px + 2vmin);
-  color: yellow;
+  height: calc(30px + 2vmin);
+  width: 500px;
+  border-radius: 4px;
   position: relative;
+  background-color: #2a2f37;
+  margin-top: 2vh
+}
+
+.textInputBase:hover {
+  background-color: #323942;
 }
 
 .textInputText {
+  background-color: #2a2f37;
+  color: white;
   position: absolute;
+  text-align: center;
+  width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
+}
+
+.reset {
+  position: absolute;
+  top: 70%
+}
+
+.reset:hover {
+  cursor: pointer;
 }
