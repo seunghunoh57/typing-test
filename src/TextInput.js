@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 
 function TextInput(props) {
   const handleFocus = (e) => {
-    console.log("test");
+    e.target.placeholder = "";
+  };
+
+  const handleBlur = (e) => {
+    e.target.placeholder = "Click here to begin";
   };
 
   return (
@@ -11,9 +15,10 @@ function TextInput(props) {
       <input
         type="text"
         placeholder={"Click here to begin"}
-        className="textInputText"
-        onClick={props.handleTextInputClick}
+        className="textInputBox"
+        onKeyPress={props.handleKeyPress}
         onFocus={handleFocus}
+        onBlur={handleBlur}
       ></input>
     </div>
   );

@@ -56,26 +56,28 @@
 
 .textInputBase {
   height: calc(30px + 2vmin);
-  width: 500px;
-  border-radius: 4px;
+  width: 600px;
   position: relative;
-  background-color: #2a2f37;
   margin-top: 2vh
 }
 
-.textInputBase:hover {
-  background-color: #323942;
-}
-
-.textInputText {
+.textInputBox {
   background-color: #2a2f37;
   color: white;
+  height: calc(30px + 2vmin);
+  font-size: 0.75em;
+  border-radius: 4px;
+  border: none;
   position: absolute;
   text-align: center;
   width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
+}
+
+.textInputBox:focus {
+  background-color: #323942;
 }
 
 .reset {
