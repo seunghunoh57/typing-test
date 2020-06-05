@@ -1,24 +1,41 @@
 import React, { useState } from "react";
-import TextInput from "./TextInput.js";
 import AppButton from "./AppButton.js";
+import useKeyPress from "./useKeyPress.js";
 import { generate } from "./WordGenerator.js";
 import "./App.css";
 
 function App() {
-  const initialWords = generate();
-  const [currentChar, setCurrentChar] = useState("");
-  const [correctCount, incrementCorrectCount] = useState(0);
-  const [incorrectCount, incrementIncorrectCount] = useState(0);
+  const words = generate();
+  const [leftPadding, setLeftPadding] = useState(
+    new Array(40).fill(" ").join(" ")
+  );
+  const [outgoingChars, setOutgoingChars] = useState("");
+  const [currentChar, setCurrentChar] = useState(words.charAt(0));
+  const [incomingChars, setIncomingChars] = useState(words.substr(1));
+  const [timer, setTimer] = useState();
+  const [wordCount, setWordCount] = useState(0);
   const [wpm, setWPM] = useState("0");
 
-  const handleKeyPress = (e) => {
-    console.log(e.key);
-    setCurrentChar(currentChar + e.key);
-  };
+  useKeyPress((key) => {
+    console.log(key);
+    let updatedOutgoingChars = outgoingChars;
+    let updatedIncomingChars = incomingChars;
 
-  const handleReset = () => {
-    setCurrentChar("Click here to begin");
-  };
+    if (key === currentChar) {
+      if (leftPadding.length > 0) {
+        setLeftPadding(leftPadding.substring(1));
+      }
+      updatedOutgoingChars += currentChar;
+      setOutgoingChars(updatedOutgoingChars);
+
+      setCurrentChar(incomingChars.charAt(0));
+      updatedIncomingChars = incomingChars.substring(1);
+      if (updatedIncomingChars.split(" ").length < 10) {
+        updatedIncomingChars += " " + generate();
+      }
+      setIncomingChars(updatedIncomingChars);
+    }
+  });
 
   const calculateWPM = () => {};
 
@@ -26,13 +43,15 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Typing Test</h1>
-        <TextInput
-          text={currentChar}
-          handleKeyPress={handleKeyPress}
-        ></TextInput>
+        <div className="textInputBase" onKeyPress={useKeyPress}>
+          <span className="outgoingText correct-text">
+            {(leftPadding + outgoingChars).slice(-40)}
+          </span>
+          <span className="currentChar">{currentChar}</span>
+          <span className="incomingText">{incomingChars.substr(0, 40)}</span>
+        </div>
         <div className="break"></div>
         <p id="wpm">{wpm} wpm</p>
-        <AppButton text={"Reset"} onClick={handleReset}></AppButton>
       </header>
     </div>
   );

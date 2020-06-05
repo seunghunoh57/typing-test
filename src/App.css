@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -55,10 +56,14 @@
 }
 
 .textInputBase {
+  white-space: pre;
   height: calc(30px + 2vmin);
-  width: 600px;
   position: relative;
   margin-top: 2vh
+}
+
+.currentChar {
+  background-color: #434c58
 }
 
 .textInputBox {
@@ -70,7 +75,6 @@
   border: none;
   position: absolute;
   text-align: center;
-  width: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%)
