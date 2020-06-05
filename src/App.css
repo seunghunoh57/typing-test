@@ -3,6 +3,11 @@
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family: robotoMono;
+  src: url(./fonts/RobotoMono-Regular.ttf);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -18,19 +23,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-family: robotoMono;
 }
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .correct-text {
@@ -59,7 +56,7 @@
   white-space: pre;
   height: calc(30px + 2vmin);
   position: relative;
-  margin-top: 2vh
+  margin-top: 2vh;
 }
 
 .currentChar {
