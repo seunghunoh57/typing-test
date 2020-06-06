@@ -14,7 +14,7 @@ function App() {
   const [incomingChars, setIncomingChars] = useState(words.substr(1));
   const [timer, setTimer] = useState();
   const [wpm, setWPM] = useState("0");
-  const [accuracy, setAccuracy] = useState("0");
+  // const [accuracy, setAccuracy] = useState("0");
 
   useKeyPress((key) => {
     if (!timer) {
