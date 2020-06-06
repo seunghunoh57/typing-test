@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import AppButton from "./AppButton.js";
 import useKeyPress from "./useKeyPress.js";
+import { currentTime } from "./time.js";
 import { generate } from "./WordGenerator.js";
 import "./App.css";
 
 function App() {
   const words = generate();
   const [leftPadding, setLeftPadding] = useState(
-    new Array(40).fill(" ").join(" ")
+    new Array(30).fill(" ").join(" ")
   );
   const [outgoingChars, setOutgoingChars] = useState("");
   const [currentChar, setCurrentChar] = useState(words.charAt(0));
@@ -15,9 +15,12 @@ function App() {
   const [timer, setTimer] = useState();
   const [wordCount, setWordCount] = useState(0);
   const [wpm, setWPM] = useState("0");
+  const [accuracy, setAccuracy] = useState("0");
 
   useKeyPress((key) => {
-    console.log(key);
+    if (!timer) {
+      setTimer(currentTime());
+    }
     let updatedOutgoingChars = outgoingChars;
     let updatedIncomingChars = incomingChars;
 
@@ -34,10 +37,19 @@ function App() {
         updatedIncomingChars += " " + generate();
       }
       setIncomingChars(updatedIncomingChars);
+
+      if (currentChar === " ") {
+        setWordCount(wordCount + 1);
+        calculateWPM();
+      }
     }
   });
 
-  const calculateWPM = () => {};
+  const calculateWPM = () => {
+    setWordCount(outgoingChars.split(" ").length);
+    const timeInMins = (currentTime() - timer) / 60000.0;
+    setWPM(((wordCount + 1) / timeInMins).toFixed(2));
+  };
 
   return (
     <div className="App">
@@ -45,12 +57,11 @@ function App() {
         <h1>Typing Test</h1>
         <div className="textInputBase" onKeyPress={useKeyPress}>
           <span className="outgoingText correct-text">
-            {(leftPadding + outgoingChars).slice(-40)}
+            {(leftPadding + outgoingChars).slice(-30)}
           </span>
           <span className="currentChar">{currentChar}</span>
-          <span className="incomingText">{incomingChars.substr(0, 40)}</span>
+          <span className="incomingText">{incomingChars.substr(0, 30)}</span>
         </div>
-        <div className="break"></div>
         <p id="wpm">{wpm} wpm</p>
       </header>
     </div>
