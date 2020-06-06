@@ -13,7 +13,6 @@ function App() {
   const [currentChar, setCurrentChar] = useState(words.charAt(0));
   const [incomingChars, setIncomingChars] = useState(words.substr(1));
   const [timer, setTimer] = useState();
-  const [wordCount, setWordCount] = useState(0);
   const [wpm, setWPM] = useState("0");
   const [accuracy, setAccuracy] = useState("0");
 
@@ -39,17 +38,11 @@ function App() {
       setIncomingChars(updatedIncomingChars);
 
       if (currentChar === " ") {
-        setWordCount(wordCount + 1);
-        calculateWPM();
+        const timeInMins = (currentTime() - timer) / 60000.0;
+        setWPM((updatedOutgoingChars.length / (5 * timeInMins)).toFixed(2));
       }
     }
   });
-
-  const calculateWPM = () => {
-    setWordCount(outgoingChars.split(" ").length);
-    const timeInMins = (currentTime() - timer) / 60000.0;
-    setWPM(((wordCount + 1) / timeInMins).toFixed(2));
-  };
 
   return (
     <div className="App">
