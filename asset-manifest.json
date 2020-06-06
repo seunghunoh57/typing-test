@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/typing-test/static/css/main.80d94c12.chunk.css",
+    "main.js": "/typing-test/static/js/main.6cabfc7b.chunk.js",
+    "main.js.map": "/typing-test/static/js/main.6cabfc7b.chunk.js.map",
+    "runtime-main.js": "/typing-test/static/js/runtime-main.dce87b24.js",
+    "runtime-main.js.map": "/typing-test/static/js/runtime-main.dce87b24.js.map",
+    "static/js/2.eb8735d7.chunk.js": "/typing-test/static/js/2.eb8735d7.chunk.js",
+    "static/js/2.eb8735d7.chunk.js.map": "/typing-test/static/js/2.eb8735d7.chunk.js.map",
+    "index.html": "/typing-test/index.html",
+    "precache-manifest.71ae1a00cd38a7b5e2a2ca7e105bc4dc.js": "/typing-test/precache-manifest.71ae1a00cd38a7b5e2a2ca7e105bc4dc.js",
+    "service-worker.js": "/typing-test/service-worker.js",
+    "static/css/main.80d94c12.chunk.css.map": "/typing-test/static/css/main.80d94c12.chunk.css.map",
+    "static/js/2.eb8735d7.chunk.js.LICENSE.txt": "/typing-test/static/js/2.eb8735d7.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/typing-test/static/media/RobotoMono-Regular.b4618f1f.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dce87b24.js",
+    "static/js/2.eb8735d7.chunk.js",
+    "static/css/main.80d94c12.chunk.css",
+    "static/js/main.6cabfc7b.chunk.js"
+  ]
+}
