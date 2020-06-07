@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useKeyPress from "./useKeyPress.js";
 import { currentTime } from "./time.js";
-import { generate } from "./WordGenerator.js";
+import { generate } from "./wordGenerator.js";
 import "./App.css";
 
 function App() {
