@@ -62,13 +62,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="AppHeader">
         <h1>typing test</h1>
         <div className="textInputBase" onKeyPress={useKeyPress}>
-          <span className="outgoingText correct-text">
+          <span className="outgoingText correctText">
             {(leftPadding + outgoingChars).slice(-30)}
           </span>
-          <span className={correct ? "currentChar" : "incorrect-text"}>
+          <span className={correct ? "currentChar" : "incorrectText"}>
             {currentChar}
           </span>
           <span className="incomingText">{incomingChars.substr(0, 30)}</span>

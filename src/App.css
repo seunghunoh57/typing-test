@@ -19,7 +19,7 @@
   margin-bottom: 4vh;
 }
 
-.App-header {
+.AppHeader {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -31,11 +31,11 @@
   font-family: robotoMono;
 }
 
-.correct-text {
+.correctText {
   color: #90ee90
 }
 
-.incorrect-text {
+.incorrectText {
   background-color: #ff5148
 }
 
