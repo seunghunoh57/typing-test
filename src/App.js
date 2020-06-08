@@ -5,6 +5,7 @@ import { generate } from "./wordGenerator.js";
 import "./App.css";
 
 function App() {
+  // List of hooks
   const words = generate();
   const [leftPadding, setLeftPadding] = useState(
     new Array(30).fill(" ").join(" ")
@@ -17,6 +18,8 @@ function App() {
   const [typedChars, setTypedChars] = useState("");
   const [accuracy, setAccuracy] = useState("0");
 
+  // Key press function with callback "key", the pressed key
+  // Hooks are used to make appropriate data changes
   useKeyPress((key) => {
     if (!timer) {
       setTimer(currentTime());
@@ -55,7 +58,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Typing Test</h1>
+        <h1>typing test</h1>
         <div className="textInputBase" onKeyPress={useKeyPress}>
           <span className="outgoingText correct-text">
             {(leftPadding + outgoingChars).slice(-30)}
@@ -63,8 +66,8 @@ function App() {
           <span className="currentChar">{currentChar}</span>
           <span className="incomingText">{incomingChars.substr(0, 30)}</span>
         </div>
-        <p id="wpm">
-          {wpm} wpm | {accuracy}% Accuracy
+        <p id="results">
+          {wpm} wpm | {accuracy}% acc
         </p>
       </header>
     </div>
