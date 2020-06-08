@@ -14,7 +14,8 @@ function App() {
   const [incomingChars, setIncomingChars] = useState(words.substr(1));
   const [timer, setTimer] = useState();
   const [wpm, setWPM] = useState("0");
-  // const [accuracy, setAccuracy] = useState("0");
+  const [typedChars, setTypedChars] = useState("");
+  const [accuracy, setAccuracy] = useState("0");
 
   useKeyPress((key) => {
     if (!timer) {
@@ -22,6 +23,7 @@ function App() {
     }
     let updatedOutgoingChars = outgoingChars;
     let updatedIncomingChars = incomingChars;
+    let updatedTypedChars = typedChars + key;
 
     if (key === currentChar) {
       if (leftPadding.length > 0) {
@@ -42,6 +44,12 @@ function App() {
         setWPM((updatedOutgoingChars.length / (5 * timeInMins)).toFixed(2));
       }
     }
+    setTypedChars(updatedTypedChars);
+    setAccuracy(
+      ((updatedOutgoingChars.length * 100) / updatedTypedChars.length).toFixed(
+        2
+      )
+    );
   });
 
   return (
@@ -55,7 +63,9 @@ function App() {
           <span className="currentChar">{currentChar}</span>
           <span className="incomingText">{incomingChars.substr(0, 30)}</span>
         </div>
-        <p id="wpm">{wpm} wpm</p>
+        <p id="wpm">
+          {wpm} wpm | {accuracy}% Accuracy
+        </p>
       </header>
     </div>
   );
