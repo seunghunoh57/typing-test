@@ -17,6 +17,7 @@ function App() {
   const [wpm, setWPM] = useState("0");
   const [typedChars, setTypedChars] = useState("");
   const [accuracy, setAccuracy] = useState("0");
+  const [correct, setCorrect] = useState(true);
 
   // Key press function with callback "key", the pressed key
   // Hooks are used to make appropriate data changes
@@ -29,6 +30,7 @@ function App() {
     let updatedTypedChars = typedChars + key;
 
     if (key === currentChar) {
+      setCorrect(true);
       if (leftPadding.length > 0) {
         setLeftPadding(leftPadding.substring(1));
       }
@@ -46,6 +48,9 @@ function App() {
         const timeInMins = (currentTime() - timer) / 60000.0;
         setWPM((updatedOutgoingChars.length / (5 * timeInMins)).toFixed(2));
       }
+    } else {
+      console.log("test");
+      setCorrect(false);
     }
     setTypedChars(updatedTypedChars);
     setAccuracy(
@@ -63,7 +68,9 @@ function App() {
           <span className="outgoingText correct-text">
             {(leftPadding + outgoingChars).slice(-30)}
           </span>
-          <span className="currentChar">{currentChar}</span>
+          <span className={correct ? "currentChar" : "incorrect-text"}>
+            {currentChar}
+          </span>
           <span className="incomingText">{incomingChars.substr(0, 30)}</span>
         </div>
         <p id="results">
