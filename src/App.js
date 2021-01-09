@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useKeyPress from "./useKeyPress.js";
 import { currentTime } from "./time.js";
 import { generate } from "./wordGenerator.js";
@@ -13,17 +13,37 @@ function App() {
   const [outgoingChars, setOutgoingChars] = useState("");
   const [currentChar, setCurrentChar] = useState(words.charAt(0));
   const [incomingChars, setIncomingChars] = useState(words.substr(1));
+  const [seconds, setSeconds] = useState(0);
+  const [secondsActive, setSecondsActive] = useState(false);
   const [timer, setTimer] = useState();
   const [wpm, setWPM] = useState("0");
   const [typedChars, setTypedChars] = useState("");
   const [accuracy, setAccuracy] = useState("0");
   const [correct, setCorrect] = useState(true);
 
+  useEffect(() => {
+    let interval = null;
+    if (secondsActive) {
+      if (seconds >= 60) {
+        clearInterval(interval);
+        setSecondsActive(false);
+      }
+      interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1);
+      }, 1000);
+    } else if (!secondsActive && seconds !== 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [secondsActive, seconds]);
+
   // Key press function with callback "key", the pressed key
   // Hooks are used to make appropriate data changes
   useKeyPress((key) => {
-    if (!timer) {
-      setTimer(currentTime());
+    if (!secondsActive) {
+      setSecondsActive(true);
+      setSeconds(0);
+      setTimer(currentTime);
     }
     let updatedOutgoingChars = outgoingChars;
     let updatedIncomingChars = incomingChars;
@@ -45,11 +65,12 @@ function App() {
       setIncomingChars(updatedIncomingChars);
 
       if (currentChar === " ") {
-        const timeInMins = (currentTime() - timer) / 60000.0;
-        setWPM((updatedOutgoingChars.length / (5 * timeInMins)).toFixed(2));
+        let timeElapsed = currentTime() - timer;
+        setWPM(
+          (updatedOutgoingChars.length / ((5 * timeElapsed) / 60000)).toFixed(2)
+        );
       }
     } else {
-      console.log("test");
       setCorrect(false);
     }
     setTypedChars(updatedTypedChars);
@@ -76,6 +97,7 @@ function App() {
         <p id="results">
           {wpm} wpm | {accuracy}% acc
         </p>
+        <p>{seconds}s</p>
       </header>
     </div>
   );
