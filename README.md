@@ -1,3 +1,8 @@
+TODO LIST:
+- Add instructions to start/reset by pressing 'Enter'
+- Add ability to customize time length of test
+- Add infrastructure to help people improve their typing
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
