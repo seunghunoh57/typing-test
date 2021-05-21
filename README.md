@@ -2,4 +2,4 @@
 
 This is a typing test developed by Seunghun Oh
 
-LINK: <seunghunoh57.github.io/typing-test>
+LINK: <https://seunghunoh57.github.io/typing-test>
