@@ -1,5 +1,6 @@
 TODO LIST:
 - Add instructions to start/reset by pressing 'Enter'
+- Make WPm update on seconds instead of keystrokes
 - Add ability to customize time length of test
 - Add infrastructure to help people improve their typing
 
